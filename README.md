@@ -1,14 +1,17 @@
 # Lens
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/nickdchristian/lens-action)](https://github.com/nickdchristian/lens-action/releases)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/nickdchristian/lens-backend/test.yml)](https://github.com/nickdchristian/lens-backend/actions)
+[![Backend Build](https://img.shields.io/github/actions/workflow/status/nickdchristian/lens-backend/ci.yml?label=backend%20build)](https://github.com/nickdchristian/lens-backend/actions/workflows/ci.yml)
+[![Frontend Build](https://img.shields.io/github/actions/workflow/status/nickdchristian/lens-frontend/ci.yml?label=frontend%20build)](https://github.com/nickdchristian/lens-frontend/actions/workflows/ci.yml)
 
 An open-source tool for flexibly visualizing events, tracking metrics, and tracing the entire lifecycle of your artifacts across multiple repositories by leveraging Actions in git. 
 
 ## Key Features
 
-- **Polyrepo Artifact Tracking**: See how code, versions, and deployments flow across your entire organization's repositories.
+- **Immediate Feedback Loops**: Shift checks left and catch mistakes faster with real-time telemetry from your CI/CD pipelines.
+- **Breaking Down Silos**: Ensure organizational transparency. Everyone with a stake can understand exactly what is happening in the ecosystem.
+- **Frictionless Artifact Tracking**: Trace an artifact (like an application version) across multiple repositories without digging through individual git histories.
 - **Secure OIDC Ingestion**: No more API keys. Lens securely verifies telemetry from GitHub Actions using native OIDC federation.
 - **Fast, Modern Dashboard**: Built with Vite and Lit, providing real-time filtering, metric tracking, and deployment tracing.
 - **Agnostic Architecture**: Deploy anywhere. Use Docker Compose for a quick single-node setup, or deploy directly to Kubernetes and AWS ECS.
