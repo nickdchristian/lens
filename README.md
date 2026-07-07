@@ -9,7 +9,7 @@ An open-source tool for flexibly visualizing events, tracking metrics, and traci
 - **Immediate Feedback Loops**: Lens pushes real-time CI/CD metrics directly to a unified dashboard, ensuring that failing checks and deployment errors are caught and fixed faster without developers having to manually hunt through GitHub Actions logs.
 - **Breaking Down Silos**: Lens aggregates data from across your entire polyrepo ecosystem into one centralized view. This ensures that everything from deployment frequency to test pass rates can be easily understood by everyone who has a stake, not just the DevOps engineers.
 - **Frictionless Artifact Tracking**: By leveraging custom workflow tags via the Lens Action, you can seamlessly trace a single artifact (like an application version or a Docker image tag) as it flows across multiple repositories, without digging through individual git commit histories.
-- **Secure OIDC Ingestion**: No more API keys. Lens securely verifies telemetry from GitHub Actions using native OIDC federation.
+- **Secure OIDC Ingestion**: Lens securely verifies telemetry from GitHub Actions using native OIDC federation.
 - **Agnostic Architecture**: Deploy anywhere. Use Docker Compose for a quick single-node setup, or deploy directly to Kubernetes and AWS ECS.
 
 ## Inspiration
@@ -29,45 +29,6 @@ Lens uses a modular, polyrepo architecture. This repository serves as the offici
 - [**`lens-action`**](https://github.com/nickdchristian/lens-action) [![Release](https://img.shields.io/github/v/release/nickdchristian/lens-action?label=version)](https://github.com/nickdchristian/lens-action/releases)<br>The official GitHub Action that securely sends deployment events to the Lens backend.
 - [**`lens-quickstart`**](https://github.com/nickdchristian/lens-quickstart)<br>The official deployment templates and configuration guides for self-hosting.
 
-## Architecture & Data Flow
-
-Lens utilizes a modern, decentralized architecture:
-
-```mermaid
-flowchart LR
-    subgraph CI/CD [GitHub Actions]
-        Action[lens-action]
-    end
-
-    subgraph Infrastructure [Self-Hosted Lens]
-        Proxy[Nginx / ALB]
-        Backend[FastAPI Backend]
-        Frontend[Vite/Lit Frontend]
-        DB[(MongoDB)]
-        Redis[(Redis)]
-    end
-
-    subgraph Auth [GitHub OIDC/OAuth]
-        OIDC[OIDC Provider]
-        OAuth[OAuth2 Provider]
-    end
-
-    %% Ingestion Flow
-    Action -- "1. Requests JWT" --> OIDC
-    OIDC -- "2. Issues Token" --> Action
-    Action -- "3. POST /api/v1/events" --> Proxy
-    Proxy -- "Forwards" --> Backend
-    Backend -- "4. Verifies Signature" --> OIDC
-    Backend -- "5. Stores Event" --> DB
-
-    %% User Flow
-    User((Developer)) -- "Views Dashboard" --> Proxy
-    Proxy -- "Serves Static Assets" --> Frontend
-    Frontend -- "API Requests" --> Proxy
-    Proxy -- "Forwards" --> Backend
-    Backend -- "OAuth2 Login" --> OAuth
-    Backend -- "Caches Session" --> Redis
-```
 
 ## Quick Start / Deployment
 
