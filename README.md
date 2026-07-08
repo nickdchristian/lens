@@ -34,13 +34,13 @@ Lens uses a modular, polyrepo architecture. This repository serves as the offici
 
 Ready to deploy Lens for your team? We've created a dedicated deployment repository that contains everything you need to get up and running securely in under 5 minutes.
 
-👉 **[Go to the Lens Quickstart Repository](https://github.com/nickdchristian/lens-quickstart)**
+**[Go to the Lens Quickstart Repository](https://github.com/nickdchristian/lens-quickstart)**
 
 The quickstart includes:
 - A `setup.sh` script to auto-generate cryptographic secrets.
 - A vendor-agnostic `docker-compose.yml` pulling our pre-built `ghcr.io` images.
 - An `nginx.conf` template for reverse proxying and handling `X-Forwarded-Proto` HTTPS headers.
-- Comprehensive guides for both single-node servers and cloud-native (AWS/Kubernetes) deployments.
+- Basic setup instructions for single-node servers and architectural notes for cloud-native deployments.
 
 ## Contributing & Issues
 
